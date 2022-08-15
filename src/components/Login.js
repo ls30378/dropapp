@@ -1,11 +1,11 @@
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
-import { Platform, StatusBar, StyleSheet, Text, View, SafeAreaView, ImageBackground } from 'react-native';
+import { Platform, StatusBar, StyleSheet, Text, View, SafeAreaView, ImageBackground, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { TextInput, Button } from 'react-native-paper'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts as usePoppins, Poppins_400Regular, Poppins_600SemiBold } from '@expo-google-fonts/poppins'
+import { useFonts as useFredoka, FredokaOne_400Regular } from '@expo-google-fonts/fredoka-one'
 import AppLoading from 'expo-app-loading';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const SafeArea = styled(SafeAreaView)`
 flex:1;
@@ -13,7 +13,7 @@ padding:10px;
 justify-content:space-evenly;
 margin-top:${StatusBar && StatusBar.currentHeight}px`
 const TitleText = styled.Text`
-font-family:'Poppins_600SemiBold';
+font-family:'FredokaOne_400Regular';
 /* font-weight:bold; */
 color:white;
 font-size:50px;
@@ -51,12 +51,15 @@ export default function Login({ navigation }) {
   let [fontsLoaded] = usePoppins({
     Poppins_400Regular,
   })
-  let [boldLoaded] = usePoppins({
-    Poppins_600SemiBold
+  let [fredokaLoaded] = useFredoka({
+    FredokaOne_400Regular
   })
 
-  if (!fontsLoaded && !boldLoaded) {
-    return <AppLoading />
+  if (!fontsLoaded) {
+    return null
+  }
+  if (!fredokaLoaded) {
+    return null
   }
   return (
 
