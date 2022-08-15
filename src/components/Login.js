@@ -80,10 +80,9 @@ export default function Login({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        <ExpoStatusBar style="light" />
+        <ExpoStatusBar style="auto" />
 
       </SafeArea>
     </ImageBackground>
   );
 }
-

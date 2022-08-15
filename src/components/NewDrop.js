@@ -34,6 +34,10 @@ flex:1;
 font-family:'Poppins_400Regular';
 `;
 
+const SafeArea = styled(SafeAreaView)`
+margin-top:${StatusBar && StatusBar.currentHeight + 10}px;
+`
+
 function NewDrop({ navigation, showDrop, setShowDrop }) {
     // const arr = Array.from(new Array(4));
     const thumbnails = [{
@@ -80,42 +84,43 @@ function NewDrop({ navigation, showDrop, setShowDrop }) {
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     return (
-
         <Modal animationType="slide" transparent={true} visible={showDrop} onRequestClose={() => setShowDrop(!showDrop)}>
+            <SafeArea>
 
-            <DropView>
-                <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'space-between', minHeight: 500 }}>
+                <DropView>
+                    <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'space-between', minHeight: 500 }}>
 
-                    <View>
-                        <TitleText style={{ fontFamily: "Poppins_400Regular" }}>New Drop</TitleText>
-                        <Text style={{ color: 'white', textAlign: 'center' }}>You just drop new container to this locations, please customize it</Text>
-                    </View>
-                    <View style={{ paddingTop: 20 }}>
-                        <Text style={{ color: "white" }}>Add Thumbnail</Text>
-                        <FlatList style={{ marginTop: 10, flexGrow: 0, }} horizontal={true} data={thumbnails} renderItem={({ item }) =>
-                            <TouchableOpacity onPress={() => setSelected(item.id)} style={{ backgroundColor: selected === item.id ? 'rgba(1,1,1,0.2)' : 'transparent', marginRight: 20, borderRadius: 10, height: 100, width: 100, alignItems: 'center', justifyContent: 'center' }}><Ionicons name={`${item.icon}`} size={40} color={selected === item.id ? item.color : 'white'} /></TouchableOpacity>} keyExtractor={(item, i) => i} />
-
-                    </View>
-                    <View style={{ color: 'white' }}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
-                            <Text style={{ color: 'white' }}>Protection</Text>
-                            <Switch trackColor={{
-                                false: '#767577', true: '#81b0ff'
-                            }}
-                                thumbColor={isEnabled ? 'rgba(74, 47, 67, 1)' : "#f4f3f4"}
-                                ios_backgroundColor='#3e3e3e'
-                                onValueChange={toggleSwitch}
-                                value={isEnabled} />
+                        <View>
+                            <TitleText style={{ fontFamily: "Poppins_400Regular" }}>New Drop</TitleText>
+                            <Text style={{ color: 'white', textAlign: 'center' }}>You just drop new container to this locations, please customize it</Text>
                         </View>
-                        {isEnabled && <TextInput theme={{ colors: { text: 'white', } }} underlineColor='white' secureTextEntry={true} placeholderTextColor={'white'} style={{ backgroundColor: 'transparent', }} placeholder='Enter password' />}
+                        <View style={{ paddingTop: 20 }}>
+                            <Text style={{ color: "white" }}>Add Thumbnail</Text>
+                            <FlatList style={{ marginTop: 10, flexGrow: 0, }} horizontal={true} data={thumbnails} renderItem={({ item }) =>
+                                <TouchableOpacity onPress={() => setSelected(item.id)} style={{ backgroundColor: selected === item.id ? 'rgba(1,1,1,0.2)' : 'transparent', marginRight: 20, borderRadius: 10, height: 100, width: 100, alignItems: 'center', justifyContent: 'center' }}><Ionicons name={`${item.icon}`} size={40} color={selected === item.id ? item.color : 'white'} /></TouchableOpacity>} keyExtractor={(item, i) => i} />
 
-                    </View>
-                    <AddButton >
-                        <TouchableOpacity onPress={() => navigation.navigate("Success")}><Text style={{ color: 'white', textAlign: 'center' }}>Add Drop</Text>
-                        </TouchableOpacity>
-                    </AddButton>
-                </ScrollView>
-            </DropView>
+                        </View>
+                        <View style={{ color: 'white' }}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
+                                <Text style={{ color: 'white' }}>Protection</Text>
+                                <Switch trackColor={{
+                                    false: '#767577', true: '#81b0ff'
+                                }}
+                                    thumbColor={isEnabled ? 'rgba(74, 47, 67, 1)' : "#f4f3f4"}
+                                    ios_backgroundColor='#3e3e3e'
+                                    onValueChange={toggleSwitch}
+                                    value={isEnabled} />
+                            </View>
+                            {isEnabled && <TextInput theme={{ colors: { text: 'white', } }} underlineColor='white' secureTextEntry={true} placeholderTextColor={'white'} style={{ backgroundColor: 'transparent', }} placeholder='Enter password' />}
+
+                        </View>
+                        <AddButton >
+                            <TouchableOpacity onPress={() => navigation.navigate("Success")}><Text style={{ color: 'white', textAlign: 'center' }}>Add Drop</Text>
+                            </TouchableOpacity>
+                        </AddButton>
+                    </ScrollView>
+                </DropView>
+            </SafeArea>
         </Modal>
     )
 }
