@@ -98,7 +98,7 @@ function NewDrop({ navigation, showDrop, setShowDrop }) {
                         <View style={{ paddingTop: 20 }}>
                             <Text style={{ color: "white" }}>Add Thumbnail</Text>
                             <FlatList style={{ marginTop: 10, flexGrow: 0, }} horizontal={true} data={thumbnails} renderItem={({ item }) =>
-                                <TouchableOpacity onPress={() => setSelected(item.id)} style={{ backgroundColor: selected === item.id ? 'rgba(1,1,1,0.2)' : 'transparent', marginRight: 20, borderRadius: 10, height: 100, width: 100, alignItems: 'center', justifyContent: 'center' }}><Ionicons name={`${item.icon}`} size={40} color={selected === item.id ? item.color : 'white'} /></TouchableOpacity>} keyExtractor={(item, i) => i} />
+                                <TouchableOpacity onPress={() => setSelected(item.id)} style={{ backgroundColor: selected === item.id ? 'rgba(1,1,1,0.2)' : 'transparent', marginRight: 20, borderRadius: 10, height: 100, width: 100, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: "rgba(255,255,255,0.3)" }}><Ionicons name={`${item.icon}`} size={40} color={selected === item.id ? item.color : 'white'} /></TouchableOpacity>} keyExtractor={(item, i) => i} />
 
                         </View>
                         <View style={{ color: 'white' }}>
