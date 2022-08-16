@@ -35,6 +35,7 @@ font-family:'Poppins_400Regular';
 `;
 
 const SafeArea = styled(SafeAreaView)`
+flex:1;
 margin-top:${StatusBar && StatusBar.currentHeight + 10}px;
 `
 
